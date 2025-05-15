@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampus Connect - Bridging Students and Recruiters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4d44db;
+            --accent: #ff6584;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            margin-top: 80px;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(108, 99, 255, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 20%;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #f5f7ff 0%, #f0f2ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="%236c63ff" opacity="0.05" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            padding: 2rem 0;
+        }
+
+        .testimonial-slide {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 0 1rem;
+            text-align: center;
+            transition: all 0.5s ease;
+            opacity: 0.5;
+            transform: scale(0.9);
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-content::before,
+        .testimonial-content::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-content::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-content::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-role {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-50px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .form-footer p {
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .user-type-selector {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-type {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .user-type.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .footer-column p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Kampus Connect
+            </a>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Jobs</a>
+                <a href="#">News</a>
+                <a href="#">About</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>Bridge Between Students and Dream Careers</h1>
+            <p>Kampus Connect empowers students to find their perfect job opportunities and helps recruiters discover top talent from campuses nationwide.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Find Jobs</button>
+                <button class="btn btn-outline">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-title">
+            <h2>Why Choose Kampus Connect</h2>
+            <p>Our platform offers seamless integration between students and recruiters with powerful features</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card floating" style="animation-delay: 0.1s;">
+                <div class="feature-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Job Portal</h3>
+                <p>Students can browse and apply for jobs posted by verified recruiters with just a few clicks.</p>
+            </div>
+            <div class="feature-card floating" style="animation-delay: 0.3s;">
+                <div class="feature-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Recruiter Dashboard</h3>
+                <p>Recruiters can post jobs, view applications, and manage candidates all in one place.</p>
+            </div>
+            <div class="feature-card floating" style="animation-delay: 0.5s;">
+                <div class="feature-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h3>News Updates</h3>
+                <p>Stay updated with the latest campus news, events, and important announcements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Our Users Say</h2>
+            <p>Hear from students and recruiters who have found success through Kampus Connect</p>
+        </div>
+        <div class="testimonial-carousel">
+            <div class="testimonial-slide active">
+                <div class="testimonial-content">
+                    Kampus Connect helped me land my dream internship at a top tech company near to my house Kazhakootam. The application process was so smooth and I got responses faster than any other platform.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="author-avatar">
+                    <h4 class="author-name">Priya </h4>
+                    <p class="author-role">Part time Accountant</p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-content">
+                    As a recruiter, finding quality candidates was always challenging. Kampus Connect has given us access to pre-screened, talented students who are genuinely interested in our opportunities.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Recruiter" class="author-avatar">
+                    <h4 class="author-name">Amalraj</h4>
+                    <p class="author-role">HR Manager, Tech Solutions Trivandrum</p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-content">
+                    The news updates on Kampus Connect keep me informed about campus events and deadlines. It's become my one-stop platform for everything career-related.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="author-avatar">
+                    <h4 class="author-name">Deepthi</h4>
+                    <p class="author-role">MBA Student,Kariavattom</p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-content">
+                    We've hired 15 interns through Kampus Connect this year alone. The quality of applicants is consistently high, and the platform makes the entire hiring process efficient.
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Recruiter" class="author-avatar">
+                    <h4 class="author-name">Namitha</h4>
+                    <p class="author-role">AI Intern</p>
+                </div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-content">
+                    I applied to 8 companies through Kampus Connect and got interview calls from 5 of them. The resume upload feature makes applying so convenient!
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Student" class="author-avatar">
+                    <h4 class="author-name">Arjun</h4>
+                    <p class="author-role">Engineering Student, UCEK Kariavattom</p>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <div class="carousel-dot active" data-slide="0"></div>
+                <div class="carousel-dot" data-slide="1"></div>
+                <div class="carousel-dot" data-slide="2"></div>
+                <div class="carousel-dot" data-slide="3"></div>
+                <div class="carousel-dot" data-slide="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeLogin">&times;</button>
+            <h2 class="modal-title">Login to Kampus Connect</h2>
+            
+            <div class="user-type-selector">
+                <div class="user-type active" data-type="student">Student</div>
+                <div class="user-type" data-type="recruiter">Recruiter</div>
+                <div class="user-type" data-type="admin">Admin</div>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeSignup">&times;</button>
+            <h2 class="modal-title">Create Account</h2>
+            
+            <div class="user-type-selector">
+                <div class="user-type active" data-type="student">Student</div>
+                <div class="user-type" data-type="recruiter">Recruiter</div>
+            </div>
+            
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a password" required>
+                </div>
+                <div class="form-group" id="studentFields">
+                    <label for="signupUniversity">University</label>
+                    <input type="text" id="signupUniversity" class="form-control" placeholder="Enter your university">
+                </div>
+                <div class="form-group" id="studentFields">
+                    <label for="signupCourse">Course</label>
+                    <input type="text" id="signupCourse" class="form-control" placeholder="Enter your course">
+                </div>
+                <div class="form-group" id="recruiterFields" style="display: none;">
+                    <label for="signupCompany">Company</label>
+                    <input type="text" id="signupCompany" class="form-control" placeholder="Enter your company name">
+                </div>
+                <div class="form-group" id="recruiterFields" style="display: none;">
+                    <label for="signupDesignation">Designation</label>
+                    <input type="text" id="signupDesignation" class="form-control" placeholder="Enter your designation">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Kampus Connect</h3>
+                <p>Bridging the gap between talented students and top recruiters nationwide. Our mission is to make campus recruitment seamless and efficient.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>For Students</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Browse Jobs</a></li>
+                    <li><a href="#">Career Resources</a></li>
+                  
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>For Recruiters</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Post a Job</a></li>
+                    <li><a href="#">Browse Candidates</a></li>
+                    <li><a href="#">Recruitment Solutions</a></li>
+                    <li><a href="#">Pricing</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Kampus Connect Trivandrum. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-auth.js";
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8Wx11jq4uBXllOIhYx7wIbarnXqdKRMo",
+            authDomain: "kampus-connect-d7383.firebaseapp.com",
+            databaseURL: "https://kampus-connect-d7383-default-rtdb.firebaseio.com",
+            projectId: "kampus-connect-d7383",
+            storageBucket: "kampus-connect-d7383.firebasestorage.app",
+            messagingSenderId: "993233650548",
+            appId: "1:993233650548:web:7e6cab2234837322faa221",
+            measurementId: "G-T35S3GN109"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const closeSignup = document.getElementById('closeSignup');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const userTypes = document.querySelectorAll('.user-type');
+        const studentFields = document.querySelectorAll('#studentFields');
+        const recruiterFields = document.querySelectorAll('#recruiterFields');
+
+        // Modal Toggle Functions
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.add('active');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            signupModal.classList.add('active');
+        });
+
+        closeLogin.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+
+        closeSignup.addEventListener('click', () => {
+            signupModal.classList.remove('active');
+        });
+
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('active');
+            signupModal.classList.add('active');
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('active');
+            }
+            if (e.target === signupModal) {
+                signupModal.classList.remove('active');
+            }
+        });
+
+        // User Type Selection
+        userTypes.forEach(type => {
+            type.addEventListener('click', () => {
+                // Remove active class from all types
+                userTypes.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked type
+                type.classList.add('active');
+                
+                const userType = type.dataset.type;
+                
+                if (userType === 'student') {
+                    studentFields.forEach(field => field.style.display = 'block');
+                    recruiterFields.forEach(field => field.style.display = 'none');
+                } else if (userType === 'recruiter') {
+                    studentFields.forEach(field => field.style.display = 'none');
+                    recruiterFields.forEach(field => field.style.display = 'block');
+                } else if (userType === 'admin') {
+                    studentFields.forEach(field => field.style.display = 'none');
+                    recruiterFields.forEach(field => field.style.display = 'none');
+                }
+            });
+        });
+
+        // Sign Up Functionality
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = signupEmail.value;
+            const password = signupPassword.value;
+            const name = signupName.value;
+            const userType = document.querySelector('.user-type-selector .active').dataset.type;
+            
+            let additionalData = {};
+            
+            if (userType === 'student') {
+                additionalData = {
+                    university: signupUniversity.value,
+                    course: signupCourse.value,
+                    type: 'student'
+                };
+            } else if (userType === 'recruiter') {
+                additionalData = {
+                    company: signupCompany.value,
+                    designation: signupDesignation.value,
+                    type: 'recruiter',
+                    approved: false // Recruiters need admin approval
+                };
+            }
+            
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // User created successfully
+                    const user = userCredential.user;
+                    
+                    // Save additional user data to database
+                    set(ref(database, 'users/' + user.uid), {
+                        name: name,
+                        email: email,
+                        ...additionalData
+                    }).then(() => {
+                        alert('Account created successfully!');
+                        signupModal.classList.remove('active');
+                        signupForm.reset();
+                        
+                        // Redirect based on user type
+                        if (userType === 'student') {
+                            // Redirect to student dashboard
+                            window.location.href = 'student-dashboard.html';
+                        } else if (userType === 'recruiter') {
+                            // Show message about admin approval
+                            alert('Your account is pending approval from admin. You will receive an email when approved.');
+                        }
+                    }).catch((error) => {
+                        console.error('Error saving user data:', error);
+                        alert('Error saving user data: ' + error.message);
+                    });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert('Error: ' + errorMessage);
+                });
+        });
+
+        // Login Functionality
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = loginEmail.value;
+            const password = loginPassword.value;
+            const userType = document.querySelector('#loginModal .user-type-selector .active').dataset.type;
+            
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // User logged in successfully
+                    const user = userCredential.user;
+                    
+                    // Get user data from database
+                    get(ref(database, 'users/' + user.uid)).then((snapshot) => {
+                        const userData = snapshot.val();
+                        
+                        // Check if user type matches
+                        if (userData.type !== userType) {
+                            auth.signOut();
+                            alert(`Please login as ${userData.type}`);
+                            return;
+                        }
+                        
+                        // Additional checks for recruiters
+                        if (userType === 'recruiter' && !userData.approved) {
+                            auth.signOut();
+                            alert('Your account is still pending approval from admin.');
+                            return;
+                        }
+                        
+                        // Login successful
+                        loginModal.classList.remove('active');
+                        loginForm.reset();
+                        
+                        // Redirect based on user type
+                        if (userType === 'student') {
+                            window.location.href = 'student-dashboard.html';
+                        } else if (userType === 'recruiter') {
+                            window.location.href = 'recruiter-dashboard.html';
+                        } else if (userType === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        }
+                    }).catch((error) => {
+                        console.error('Error getting user data:', error);
+                        alert('Error getting user data: ' + error.message);
+                    });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert('Error: ' + errorMessage);
+                });
+        });
+
+        // Testimonial Carousel
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            testimonialSlides.forEach(slide => slide.classList.remove('active'));
+            carouselDots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonialSlides[index].classList.add('active');
+            carouselDots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        carouselDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showSlide(parseInt(dot.dataset.slide));
+            });
+        });
+
+        // Auto-rotate carousel
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % testimonialSlides.length;
+            showSlide(currentSlide);
+        }, 5000);
+    </script>
+</body>
+</html>
