@@ -1,2 +1,2 @@
 # kampus-connect
-where Students meet 
+where Job meets Student 
